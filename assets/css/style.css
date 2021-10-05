@@ -15,6 +15,10 @@
   margin-block-end: 0px;
 }
 
+body {
+  font-family: "RocknRoll One", sans-serif;
+}
+
 /* Header Section */
 .header {
   display: flex;
@@ -39,6 +43,45 @@
 
 .timer {
   color: var(--maximum-yellow-red);
+}
+
+.main {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+/* Group selector for the h1, the p and the button */
+h1,
+p {
+  padding: 0.8rem 4.2rem;
+  color: var(--quinacridone-magenta);
+}
+
+/* Start button */
+.start-btn {
+  margin-top: 1.5rem;
+  box-shadow: 3px 4px 0px 0px #1564ad;
+  background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+  background-color: #79bbff;
+  border-radius: 5px;
+  border: 1px solid #337bc4;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 12px 44px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #528ecc;
+}
+
+.start-btn:hover {
+  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color: #378de5;
+}
+.start-btn:active {
+  position: relative;
+  top: 1px;
 }
 
 /* mobile properties */
