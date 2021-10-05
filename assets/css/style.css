@@ -3,7 +3,7 @@
   --sapphire-blue: #006ba6ff;
   --dodger-blue: #0496ffff;
   --maximum-yellow-red: #ffbc42ff;
-  --ruby: #d81159ff;
+  --ruby: #e71d3f;
   --quinacridone-magenta: #8f2d56ff;
 }
 
@@ -16,6 +16,8 @@
 }
 
 body {
+  background-image: url("../images/images/Rock-n-roll.png");
+  background-size: cover;
   font-family: "RocknRoll One", sans-serif;
 }
 
@@ -32,12 +34,12 @@ body {
   text-decoration: none;
   font-weight: 800;
   font-size: 1rem;
-  color: var(--sapphire-blue);
+  color: var(--dodger-blue);
 }
 
 /* Pseudo class hover applied on the nav-link class */
 .header a:hover {
-  color: var(--dodger-blue);
+  color: var(--sapphire-blue);
 }
 
 .timer {
@@ -52,8 +54,9 @@ body {
 /* Group selector for the h1, the p and the button */
 h1,
 p {
-  padding: 0.8rem 4.2rem;
-  color: var(--quinacridone-magenta);
+  margin: 0rem 12rem;
+  padding: 0.8rem 1rem;
+  color: #ffffff;
 }
 
 /* Start button */
@@ -81,6 +84,14 @@ p {
 .start-btn:active {
   position: relative;
   top: 1px;
+}
+
+/* tablet properties */
+@media screen and (max-width: 768px) and (min-width: 577px) {
+  h1,
+  p {
+    margin: 0rem 8rem;
+  }
 }
 
 /* mobile properties */
