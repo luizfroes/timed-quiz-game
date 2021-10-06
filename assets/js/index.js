@@ -77,11 +77,38 @@ const questionsArray = [
 
 const startBtn = document.querySelector("#start-btn");
 const startContainer = document.querySelector("#start-container");
+const mainContainer = document.querySelector("#main");
 
 let timeRemaining = 90;
 
 const renderScoreContainer = function () {
   alert("Game Over");
+};
+
+const renderQuestionContainer = function () {
+  const questionContainerDiv = document.createElement("div");
+  questionContainerDiv.setAttribute("class", "question-container");
+  questionContainerDiv.setAttribute("data-answer", correctAnswer);
+
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.setAttribute("class", "buttons");
+  buttonsDiv.textContent = "meu div";
+
+  for (let index = 0; index < answers.length; index++) {
+    //create answerDiv
+    const answerDiv = document.createElement("div");
+    answerDiv.setAttribute("class", "answer");
+    answerDiv.textContent = answers[index];
+
+    //append to buttonsDiv
+    buttonsDiv.appendChild(answerDiv);
+  }
+
+  //append buttonsDiv to questionContainerDiv
+  questionContainerDiv.appendChild(buttonsDiv);
+
+  //append questionContainerDiv to main
+  mainContainer.appendChild(questionContainerDiv);
 };
 
 const startTimer = function () {
@@ -109,16 +136,14 @@ const startTimer = function () {
 };
 
 const startGame = function () {
-  console.log("game starter");
-
   //Remove start container
   startContainer.remove();
 
   //Start the timer
   startTimer();
 
-  //Remove start container
-  startContainer.remove();
+  //Render questions container
+  renderQuestionContainer();
 };
 
 startBtn.addEventListener("click", startGame);
