@@ -78,6 +78,7 @@ const questionsArray = [
 const startBtn = document.querySelector("#start-btn");
 const startContainer = document.querySelector("#start-container");
 const mainContainer = document.querySelector("#main");
+const questionContainerDiv = document.querySelector("#question-container");
 
 let timeRemaining = 90;
 
@@ -87,10 +88,21 @@ const renderScoreContainer = function () {
   alert("Game Over");
 };
 
+const verifyAnswer = function (event) {
+  const target = event.target;
+
+  if (target.getAttribute("class") === "answer") {
+    console.log("answer clicked");
+  }
+};
+
 const renderQuestionContainer = function () {
+  const questionsIndex = questionsArray[currentQuestionIndex];
+
   //create the questionContainerDiv
   const questionContainerDiv = document.createElement("div");
   questionContainerDiv.setAttribute("class", "question-container");
+  questionContainerDiv.setAttribute("id", "question-container");
   questionContainerDiv.setAttribute(
     "data-answer",
     questionsArray[currentQuestionIndex].correctAnswer
@@ -98,7 +110,7 @@ const renderQuestionContainer = function () {
 
   //create the h2
   const currentQuestion = document.createElement("h2");
-  currentQuestion.textContent = questionsArray[currentQuestionIndex].question;
+  currentQuestion.textContent = questionsIndex.question;
 
   const buttonsDiv = document.createElement("div");
   buttonsDiv.setAttribute("class", "buttons");
@@ -107,7 +119,7 @@ const renderQuestionContainer = function () {
     //create answerDiv
     const answerDiv = document.createElement("div");
     answerDiv.setAttribute("class", "answer");
-    answerDiv.textContent = questionsArray[currentQuestionIndex].answers[i];
+    answerDiv.textContent = questionsIndex.answers[i];
 
     //append to buttonsDiv
     buttonsDiv.appendChild(answerDiv);
@@ -118,6 +130,9 @@ const renderQuestionContainer = function () {
 
   //append buttonsDiv to questionContainerDiv
   questionContainerDiv.appendChild(buttonsDiv);
+
+  //add a event listener click
+  questionContainerDiv.addEventListener("click", verifyAnswer);
 
   //append questionContainerDiv to main
   mainContainer.appendChild(questionContainerDiv);
