@@ -100,7 +100,7 @@ const verifyAnswer = function (correctOption, answer) {
       //Render ScoreContainer
     } else {
       //Remove the Question container
-      questionContainerDiv.innerHTML = "";
+      mainContainer.innerHTML = "";
 
       //Render Next question
       renderQuestionContainer();
