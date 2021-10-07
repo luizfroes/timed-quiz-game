@@ -84,29 +84,33 @@ let timeRemaining = 90;
 
 let currentQuestionIndex = 0;
 
+const questionsIndex = questionsArray[currentQuestionIndex];
+
+const correctOption = questionsIndex.correctAnswer;
+
 const renderScoreContainer = function () {
   alert("Game Over");
 };
 
 const verifyAnswer = function (event) {
+  const currentTarget = event.currentTarget;
   const target = event.target;
+  const isAnswer = target.getAttribute("class") === "answer";
+  const correctOption = currentTarget.getAttribute("data-option");
 
-  if (target.getAttribute("class") === "answer") {
-    console.log("answer clicked");
+  if (isAnswer) {
+    const answer = target.getAttribute("data-answer");
+    console.log("answer clicked", answer);
+    console.log("correct answer", correctOption);
   }
 };
 
 const renderQuestionContainer = function () {
-  const questionsIndex = questionsArray[currentQuestionIndex];
-
   //create the questionContainerDiv
   const questionContainerDiv = document.createElement("div");
   questionContainerDiv.setAttribute("class", "question-container");
   questionContainerDiv.setAttribute("id", "question-container");
-  questionContainerDiv.setAttribute(
-    "data-answer",
-    questionsArray[currentQuestionIndex].correctAnswer
-  );
+  questionContainerDiv.setAttribute("data-option", correctOption);
 
   //create the h2
   const currentQuestion = document.createElement("h2");
@@ -119,6 +123,7 @@ const renderQuestionContainer = function () {
     //create answerDiv
     const answerDiv = document.createElement("div");
     answerDiv.setAttribute("class", "answer");
+    answerDiv.setAttribute("data-answer", questionsIndex.answers[i]);
     answerDiv.textContent = questionsIndex.answers[i];
 
     //append to buttonsDiv
