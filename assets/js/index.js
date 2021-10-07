@@ -84,24 +84,49 @@ let timeRemaining = 90;
 
 let currentQuestionIndex = 0;
 
-const questionsIndex = questionsArray[currentQuestionIndex];
-
-const correctOption = questionsIndex.correctAnswer;
+const correctOption = questionsArray[currentQuestionIndex].correctAnswer;
 
 const renderScoreContainer = function () {
   alert("Game Over");
 };
 
-const verifyAnswer = function (event) {
+const verifyAnswer = function (correctOption, answer) {
+  console.log("answer clicked", answer);
+  console.log("correct answer", correctOption);
+
+  if (correctOption !== answer) {
+    //Deduct timer value in 10
+    timeRemaining = timeRemaining - 10;
+  } else {
+    console.log("true");
+
+    //Increment questionIndex
+    currentQuestionIndex = currentQuestionIndex + 1;
+
+    if (currentQuestionIndex >= questionsArray.length) {
+      //Render ScoreContainer
+    } else {
+      console.log(currentQuestionIndex);
+
+      //Remove the Question container
+      //questionContainerDiv.remove();
+
+      //Render Next question
+      renderQuestionContainer();
+    }
+  }
+};
+const getAnswer = function (event) {
   const currentTarget = event.currentTarget;
   const target = event.target;
+
   const isAnswer = target.getAttribute("class") === "answer";
-  const correctOption = currentTarget.getAttribute("data-option");
 
   if (isAnswer) {
+    const correctOption = currentTarget.getAttribute("data-option");
     const answer = target.getAttribute("data-answer");
-    console.log("answer clicked", answer);
-    console.log("correct answer", correctOption);
+
+    verifyAnswer(correctOption, answer);
   }
 };
 
@@ -114,7 +139,7 @@ const renderQuestionContainer = function () {
 
   //create the h2
   const currentQuestion = document.createElement("h2");
-  currentQuestion.textContent = questionsIndex.question;
+  currentQuestion.textContent = questionsArray[currentQuestionIndex].question;
 
   const buttonsDiv = document.createElement("div");
   buttonsDiv.setAttribute("class", "buttons");
@@ -123,8 +148,11 @@ const renderQuestionContainer = function () {
     //create answerDiv
     const answerDiv = document.createElement("div");
     answerDiv.setAttribute("class", "answer");
-    answerDiv.setAttribute("data-answer", questionsIndex.answers[i]);
-    answerDiv.textContent = questionsIndex.answers[i];
+    answerDiv.setAttribute(
+      "data-answer",
+      questionsArray[currentQuestionIndex].answers[i]
+    );
+    answerDiv.textContent = questionsArray[currentQuestionIndex].answers[i];
 
     //append to buttonsDiv
     buttonsDiv.appendChild(answerDiv);
@@ -137,7 +165,7 @@ const renderQuestionContainer = function () {
   questionContainerDiv.appendChild(buttonsDiv);
 
   //add a event listener click
-  questionContainerDiv.addEventListener("click", verifyAnswer);
+  questionContainerDiv.addEventListener("click", getAnswer);
 
   //append questionContainerDiv to main
   mainContainer.appendChild(questionContainerDiv);
