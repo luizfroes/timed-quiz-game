@@ -84,8 +84,6 @@ let timeRemaining = 90;
 
 let currentQuestionIndex = 0;
 
-const correctOption = questionsArray[currentQuestionIndex].correctAnswer;
-
 const renderScoreContainer = function () {
   alert("Game Over");
 };
@@ -95,16 +93,12 @@ const verifyAnswer = function (correctOption, answer) {
     //Deduct timer value in 10
     timeRemaining = timeRemaining - 10;
   } else {
-    console.log("true");
-
     //Increment questionIndex
-    currentQuestionIndex = currentQuestionIndex + 1;
+    currentQuestionIndex += 1;
 
     if (currentQuestionIndex >= questionsArray.length) {
       //Render ScoreContainer
     } else {
-      console.log(currentQuestionIndex);
-
       //Remove the Question container
       questionContainerDiv.innerHTML = "";
 
@@ -124,11 +118,13 @@ const getAnswer = function (event) {
     const answer = target.getAttribute("data-answer");
 
     verifyAnswer(correctOption, answer);
-    console.log(mainContainer);
+    console.log(correctOption, currentQuestionIndex);
   }
 };
 
 const renderQuestionContainer = function () {
+  const correctOption = questionsArray[currentQuestionIndex].correctAnswer;
+
   //create the questionContainerDiv
   questionContainerDiv = document.createElement("div");
   questionContainerDiv.setAttribute("class", "question-container");
