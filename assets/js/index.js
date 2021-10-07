@@ -106,7 +106,7 @@ const verifyAnswer = function (correctOption, answer) {
       console.log(currentQuestionIndex);
 
       //Remove the Question container
-      //questionContainerDiv.removeChild();
+      questionContainerDiv.innerHTML = "";
 
       //Render Next question
       renderQuestionContainer();
@@ -130,7 +130,7 @@ const getAnswer = function (event) {
 
 const renderQuestionContainer = function () {
   //create the questionContainerDiv
-  const questionContainerDiv = document.createElement("div");
+  questionContainerDiv = document.createElement("div");
   questionContainerDiv.setAttribute("class", "question-container");
   questionContainerDiv.setAttribute("id", "question-container");
   questionContainerDiv.setAttribute("data-option", correctOption);
