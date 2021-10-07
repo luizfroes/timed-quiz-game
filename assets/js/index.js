@@ -78,7 +78,7 @@ const questionsArray = [
 const startBtn = document.querySelector("#start-btn");
 const startContainer = document.querySelector("#start-container");
 const mainContainer = document.querySelector("#main");
-const questionContainerDiv = document.querySelector("#question-container");
+const questionContainer = document.querySelector("#question-container");
 
 let timeRemaining = 90;
 
@@ -91,9 +91,6 @@ const renderScoreContainer = function () {
 };
 
 const verifyAnswer = function (correctOption, answer) {
-  console.log("answer clicked", answer);
-  console.log("correct answer", correctOption);
-
   if (correctOption !== answer) {
     //Deduct timer value in 10
     timeRemaining = timeRemaining - 10;
@@ -109,7 +106,7 @@ const verifyAnswer = function (correctOption, answer) {
       console.log(currentQuestionIndex);
 
       //Remove the Question container
-      //questionContainerDiv.remove();
+      //questionContainerDiv.removeChild();
 
       //Render Next question
       renderQuestionContainer();
@@ -127,6 +124,7 @@ const getAnswer = function (event) {
     const answer = target.getAttribute("data-answer");
 
     verifyAnswer(correctOption, answer);
+    console.log(mainContainer);
   }
 };
 
@@ -158,17 +156,19 @@ const renderQuestionContainer = function () {
     buttonsDiv.appendChild(answerDiv);
   }
 
-  //append the h2 to teh questionContainerDiv
-  questionContainerDiv.appendChild(currentQuestion);
-
-  //append buttonsDiv to questionContainerDiv
-  questionContainerDiv.appendChild(buttonsDiv);
+  //append the h2 and buttonsDiv to the questionContainerDiv
+  questionContainerDiv.append(currentQuestion, buttonsDiv);
 
   //add a event listener click
   questionContainerDiv.addEventListener("click", getAnswer);
 
-  //append questionContainerDiv to main
+  //append questionContainerDiv to mainContainer
   mainContainer.appendChild(questionContainerDiv);
+
+  //add a event listener click
+  //questionContainerDiv.addEventListener("click", getAnswer);
+
+  return questionContainerDiv;
 };
 
 const startTimer = function () {
