@@ -81,28 +81,40 @@ const mainContainer = document.querySelector("#main");
 
 let timeRemaining = 90;
 
+let currentQuestionIndex = 0;
+
 const renderScoreContainer = function () {
   alert("Game Over");
 };
 
 const renderQuestionContainer = function () {
+  //create the questionContainerDiv
   const questionContainerDiv = document.createElement("div");
   questionContainerDiv.setAttribute("class", "question-container");
-  questionContainerDiv.setAttribute("data-answer", correctAnswer);
+  questionContainerDiv.setAttribute(
+    "data-answer",
+    questionsArray[currentQuestionIndex].correctAnswer
+  );
+
+  //create the h2
+  const currentQuestion = document.createElement("h2");
+  currentQuestion.textContent = questionsArray[currentQuestionIndex].question;
 
   const buttonsDiv = document.createElement("div");
   buttonsDiv.setAttribute("class", "buttons");
-  buttonsDiv.textContent = "meu div";
 
-  for (let index = 0; index < answers.length; index++) {
+  for (let i = 0; i < questionsArray[i].answers.length; i++) {
     //create answerDiv
     const answerDiv = document.createElement("div");
     answerDiv.setAttribute("class", "answer");
-    answerDiv.textContent = answers[index];
+    answerDiv.textContent = questionsArray[currentQuestionIndex].answers[i];
 
     //append to buttonsDiv
     buttonsDiv.appendChild(answerDiv);
   }
+
+  //append the h2 to teh questionContainerDiv
+  questionContainerDiv.appendChild(currentQuestion);
 
   //append buttonsDiv to questionContainerDiv
   questionContainerDiv.appendChild(buttonsDiv);
