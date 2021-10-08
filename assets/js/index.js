@@ -79,13 +79,69 @@ const startBtn = document.querySelector("#start-btn");
 const startContainer = document.querySelector("#start-container");
 const mainContainer = document.querySelector("#main");
 const questionContainer = document.querySelector("#question-container");
+const scoreContainerDiv = document.querySelector("#score-container");
 
-let timeRemaining = 90;
+let timeRemaining = 91;
 
 let currentQuestionIndex = 0;
 
+const registerScore = function () {};
+
 const renderScoreContainer = function () {
-  alert("Game Over");
+  //Remove questionContainerDiv
+  questionContainerDiv.remove();
+
+  //Render scoreContainerDiv
+  const scoreContainerDiv = document.createElement("div");
+  scoreContainerDiv.setAttribute("class", "score-container");
+  scoreContainerDiv.setAttribute("id", "score-container");
+
+  //create the h2
+  const endingText = document.createElement("h2");
+  endingText.textContent = "All Done!!!";
+
+  //create the p
+  const finalScoreText = document.createElement("p");
+  finalScoreText.textContent = "Your final score is ";
+
+  //create the span
+  const scoreSpan = document.createElement("span");
+  scoreSpan.textContent = timeRemaining;
+
+  //append the span into the p
+  finalScoreText.appendChild(scoreSpan);
+
+  //create the form
+  const scoreForm = document.createElement("form");
+  scoreForm.setAttribute("class", "score-form");
+
+  //create the label
+  const initialsLabel = document.createElement("label");
+  initialsLabel.setAttribute("for", "initials");
+  initialsLabel.textContent = "Enter your initials here";
+
+  //create the text input
+  const textInput = document.createElement("input");
+  textInput.setAttribute("type", "text");
+
+  //create the submit input
+  const submitInput = document.createElement("input");
+  submitInput.setAttribute("type", "submit");
+  submitInput.setAttribute("class", "submit-btn");
+
+  //Add event listener click on the submit button
+  submitInput.addEventListener("click", registerScore);
+
+  //append to form
+  scoreForm.append(initialsLabel, textInput, submitInput);
+
+  //append to scoreContainerDiv
+  scoreContainerDiv.append(endingText, finalScoreText, scoreForm);
+
+  //Append scoreContainerDiv to mainContainer
+  mainContainer.append(scoreContainerDiv);
+
+  return scoreContainerDiv;
 };
 
 const verifyAnswer = function (correctOption, answer) {
@@ -98,6 +154,8 @@ const verifyAnswer = function (correctOption, answer) {
 
     if (currentQuestionIndex >= questionsArray.length) {
       //Render ScoreContainer
+      renderScoreContainer();
+      console.log(scoreContainerDiv);
     } else {
       //Remove the Question container
       mainContainer.innerHTML = "";
@@ -135,6 +193,7 @@ const renderQuestionContainer = function () {
   const currentQuestion = document.createElement("h2");
   currentQuestion.textContent = questionsArray[currentQuestionIndex].question;
 
+  //create the answers div
   const buttonsDiv = document.createElement("div");
   buttonsDiv.setAttribute("class", "buttons");
 
@@ -160,9 +219,6 @@ const renderQuestionContainer = function () {
 
   //append questionContainerDiv to mainContainer
   mainContainer.appendChild(questionContainerDiv);
-
-  //add a event listener click
-  //questionContainerDiv.addEventListener("click", getAnswer);
 
   return questionContainerDiv;
 };
