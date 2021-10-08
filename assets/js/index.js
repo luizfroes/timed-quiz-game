@@ -85,7 +85,12 @@ let timeRemaining = 91;
 
 let currentQuestionIndex = 0;
 
-const registerScore = function () {};
+const registerScore = function () {
+  //Get value from textInput
+  //get timeRemaining (score)
+  //Construct an object {initials:"", score:0}
+  //Store object in Local Storage
+};
 
 const renderScoreContainer = function () {
   //Remove questionContainerDiv
@@ -118,10 +123,12 @@ const renderScoreContainer = function () {
   //create the label
   const initialsLabel = document.createElement("label");
   initialsLabel.setAttribute("for", "initials");
+  initialsLabel.setAttribute("class", "initials");
   initialsLabel.textContent = "Enter your initials here";
 
   //create the text input
   const textInput = document.createElement("input");
+  textInput.setAttribute("class", "text-input");
   textInput.setAttribute("type", "text");
 
   //create the submit input
@@ -131,6 +138,7 @@ const renderScoreContainer = function () {
 
   //Add event listener click on the submit button
   submitInput.addEventListener("click", registerScore);
+  console.log("clicked");
 
   //append to form
   scoreForm.append(initialsLabel, textInput, submitInput);
@@ -155,7 +163,6 @@ const verifyAnswer = function (correctOption, answer) {
     if (currentQuestionIndex >= questionsArray.length) {
       //Render ScoreContainer
       renderScoreContainer();
-      console.log(scoreContainerDiv);
     } else {
       //Remove the Question container
       mainContainer.innerHTML = "";

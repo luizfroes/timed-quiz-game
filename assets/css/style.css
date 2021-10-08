@@ -145,11 +145,16 @@ p {
   background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
   background-color: #dfdfdf;
 }
+
 .submit-btn:active {
   position: relative;
   top: 1px;
 }
 
+.initials,
+.text-input {
+  margin-right: 0.5rem;
+}
 /* tablet properties */
 @media screen and (max-width: 850px) and (min-width: 577px) {
   .start-container,
