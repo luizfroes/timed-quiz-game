@@ -17,8 +17,42 @@ const getFromLocalStorage = function (key, defaultValue) {
   }
 };
 
+const constructPlayerHighScore = function (highScore) {
+  //construct the score for each player
+  const constructPlayerScore = function (item) {
+    //construct the div
+    const playerHighScore = document.createElement("div");
+    playerHighScore.setAttribute("class", "high-score-div");
+    playerHighScore.setAttribute("id", "high-score-div");
+
+    //construct the span
+    const spanPosition = document.createElement("span");
+    spanPosition.setAttribute("class", "text-span");
+    spanPosition.textContent = highScore.indexOf(item) + 1;
+
+    const spanInitials = document.createElement("span");
+    spanInitials.setAttribute("class", "text-span");
+    spanInitials.textContent = item.initials;
+
+    const spanScore = document.createElement("span");
+    spanScore.setAttribute("class", "text-span");
+    spanScore.textContent = item.score;
+
+    //append to div
+    playerHighScore.append(spanPosition, spanInitials, spanScore);
+
+    //Map over highScore
+    highScore.map(constructPlayerScore).join("");
+    return playerHighScore;
+  };
+};
+
 const renderHighScore = function (highScore) {
   console.log(highScore);
+
+  //construct each player highScore
+  const playerHighScore = constructPlayerHighScore(highScore);
+  console.log(playerHighScore);
 };
 
 document.addEventListener("DOMContentLoaded", function (event) {
