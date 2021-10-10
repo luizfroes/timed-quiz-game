@@ -106,7 +106,7 @@ const onClick = function () {
     //Set in Local Storage
     localStorage.setItem("highScore", JSON.stringify(scoreArray));
   } else {
-    //const highScoreArray = JSON.parse(dataFromLocalS);
+    const highScoreArray = JSON.parse(dataFromLocalS);
     console.log(scoreObject.initials, scoreObject.score);
     //highScoreArray.push(scoreObject);
 
