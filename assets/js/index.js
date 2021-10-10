@@ -95,22 +95,23 @@ const onClick = function () {
   //Get value from textInput
   const initialsInput = document.getElementById("text-input").value;
 
+  //Construct an object {initials:"", score:0}
+  const scoreObject = { initials: initialsInput, score: timeRemaining };
+
   //get from local storage
   const dataFromLocalS = localStorage.getItem("highScore");
 
   if (!dataFromLocalS) {
     //Construct an object {initials:"", score:0}
-    const scoreObject = { initials: initialsInput, score: timeRemaining };
-    const scoreArray = [scoreObject.initials, scoreObject.score];
+    const scoreArray = [scoreObject];
 
     //Set in Local Storage
     localStorage.setItem("highScore", JSON.stringify(scoreArray));
   } else {
     const highScoreArray = JSON.parse(dataFromLocalS);
-    console.log(scoreObject.initials, scoreObject.score);
-    //highScoreArray.push(scoreObject);
+    highScoreArray.push(scoreObject);
 
-    //localStorage.setItem("highScore", JSON.stringify(highScoreObject));
+    localStorage.setItem("highScore", JSON.stringify(highScoreArray));
   }
 
   //Store object in Local Storage
