@@ -186,7 +186,7 @@ const renderScoreContainer = function () {
 
 const startAgain = function () {
   //Go back to main page
-  location.reload();
+  location.assign("./highscore.html");
 
   //Set the timer
   timeRemaining = 91;
