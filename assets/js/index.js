@@ -81,13 +81,16 @@ const mainContainer = document.querySelector("#main");
 const questionContainer = document.querySelector("#question-container");
 const scoreContainerDiv = document.querySelector("#score-container");
 
+let timer = null;
+
 let timeRemaining = 91;
 
 let currentQuestionIndex = 0;
 
-const registerScore = function () {
+const registerScore = function (event) {
+  event.preventDefault();
   //Get value from textInput
-  const initialsInput = document.getElementById("#text-input").value;
+  const initialsInput = document.getElementById("text-input").value;
 
   //Construct an object {initials:"", score:0}
   const scoreObject = { initials: initialsInput, score: timeRemaining };
@@ -212,7 +215,9 @@ const verifyAnswer = function (correctOption, answer) {
     if (currentQuestionIndex >= questionsArray.length) {
       //Render ScoreContainer
       renderScoreContainer();
+
       //stop the timer
+      clearInterval(timer);
     } else {
       //Remove the Question container
       mainContainer.innerHTML = "";
@@ -300,7 +305,7 @@ const startTimer = function () {
   };
 
   //Set interval
-  const timer = setInterval(timerTick, 1000);
+  timer = setInterval(timerTick, 1000);
 };
 
 const startGame = function () {
