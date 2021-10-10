@@ -39,7 +39,7 @@ const questionsArray = [
   },
   {
     question: "Which member of the Beatles was known as “the quiet Beatle?",
-    answers: ["Pete Best", "Ringo Starr", "George Harrison", "John Lennon"],
+    answers: ["Peter Best", "Ringo Starr", "George Harrison", "John Lennon"],
     correctAnswer: "George Harrison",
   },
   {
@@ -87,9 +87,13 @@ let currentQuestionIndex = 0;
 
 const registerScore = function () {
   //Get value from textInput
-  //get timeRemaining (score)
+  const initialsInput = document.getElementById("#text-input").value;
+
   //Construct an object {initials:"", score:0}
+  const scoreObject = { initials: initialsInput, score: timeRemaining };
+
   //Store object in Local Storage
+  return console.log("clicked", scoreObject);
 };
 
 const renderScoreContainer = function () {
@@ -129,16 +133,16 @@ const renderScoreContainer = function () {
   //create the text input
   const textInput = document.createElement("input");
   textInput.setAttribute("class", "text-input");
+  textInput.setAttribute("id", "text-input");
   textInput.setAttribute("type", "text");
 
   //create the submit input
-  const submitInput = document.createElement("input");
-  submitInput.setAttribute("type", "submit");
+  const submitInput = document.createElement("button");
   submitInput.setAttribute("class", "submit-btn");
+  submitInput.textContent = "Submit";
 
   //Add event listener click on the submit button
   submitInput.addEventListener("click", registerScore);
-  console.log("clicked");
 
   //append to form
   scoreForm.append(initialsLabel, textInput, submitInput);
@@ -152,6 +156,47 @@ const renderScoreContainer = function () {
   return scoreContainerDiv;
 };
 
+const startAgain = function () {
+  //Remove the gameOverDiv
+  mainContainer.innerHTML = "";
+
+  //Set the timer
+  timeRemaining === timeRemaining + 91;
+  //Start the timer
+  startTimer();
+
+  //Render QuestionsContainer
+  renderQuestionContainer();
+};
+
+const renderGameOverContainer = function () {
+  //Remove questionContainerDiv
+  questionContainerDiv.remove();
+
+  //render the Game over div
+  const gameOverDiv = document.createElement("div");
+  gameOverDiv.setAttribute("class", "game-over-container");
+
+  //render the h1
+  const gameOverText = document.createElement("h1");
+  gameOverText.textContent = "Your time is over";
+
+  //render the Try again button
+  const tryAgainBtn = document.createElement("button");
+  tryAgainBtn.setAttribute("class", "try-again-btn");
+  tryAgainBtn.textContent = "Try again";
+
+  tryAgainBtn.addEventListener("click", startAgain);
+
+  //append to the gameOverDiv
+  gameOverDiv.append(gameOverText, tryAgainBtn);
+
+  //append to mainContainer
+  mainContainer.appendChild(gameOverDiv);
+
+  return gameOverDiv;
+};
+
 const verifyAnswer = function (correctOption, answer) {
   if (correctOption !== answer) {
     //Deduct timer value in 10
@@ -163,6 +208,7 @@ const verifyAnswer = function (correctOption, answer) {
     if (currentQuestionIndex >= questionsArray.length) {
       //Render ScoreContainer
       renderScoreContainer();
+      //stop the timer
     } else {
       //Remove the Question container
       mainContainer.innerHTML = "";
@@ -183,7 +229,6 @@ const getAnswer = function (event) {
     const answer = target.getAttribute("data-answer");
 
     verifyAnswer(correctOption, answer);
-    console.log(correctOption, currentQuestionIndex);
   }
 };
 
@@ -239,8 +284,8 @@ const startTimer = function () {
     if (timeRemaining <= 0) {
       clearInterval(timer);
 
-      //Render the Score container
-      renderScoreContainer();
+      //Render the Game Over Container
+      renderGameOverContainer();
     } else {
       //Decrement time value
       timeRemaining -= 1;
