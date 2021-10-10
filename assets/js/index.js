@@ -348,7 +348,7 @@ const startGame = function () {
 startBtn.addEventListener("click", startGame);
 
 const goToHighScore = function () {
-  location.assign("/highscore.html");
+  location.assign("./highscore.html");
 };
 
 highScoreBtn.addEventListener("click", goToHighScore);
