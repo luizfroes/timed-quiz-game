@@ -87,34 +87,45 @@ let timeRemaining = 91;
 
 let currentQuestionIndex = 0;
 
-const scorePreventDefault = function (event) {
-  event.preventDefault();
+//const scorePreventDefault = function (event) {
+//event.preventDefault();
+//};
+
+const initializeLocalStorage = function (key, defaultValue) {
+  //initialize LS
+  const highScore = JSON.stringify(localStorage.getItem(key));
+
+  if (!highScore) {
+    localStorage.setItem(key, JSON.stringify(defaultValue));
+  }
 };
 
-const onClick = function () {
+const getFromLocalStorage = function (key, defaultValue) {
+  const localStorageData = JSON.parse(localStorage.getItem(key));
+
+  if (!localStorageData) {
+    return defaultValue;
+  } else {
+    return localStorageData;
+  }
+};
+
+const addToHighScore = function () {
+  //Initialize LS
+  initializeLocalStorage("highScore", []);
+
   //Get value from textInput
   const initialsInput = document.getElementById("text-input").value;
 
   //Construct an object {initials:"", score:0}
   const scoreObject = { initials: initialsInput, score: timeRemaining };
 
-  //get from local storage
-  const dataFromLocalS = localStorage.getItem("highScore");
+  //add to LS
+  const highScore = getFromLocalStorage("highScore", []);
 
-  if (!dataFromLocalS) {
-    //Construct an object {initials:"", score:0}
-    const scoreArray = [scoreObject];
+  highScore.push(scoreObject);
 
-    //Set in Local Storage
-    localStorage.setItem("highScore", JSON.stringify(scoreArray));
-  } else {
-    const highScoreArray = JSON.parse(dataFromLocalS);
-    highScoreArray.push(scoreObject);
-
-    localStorage.setItem("highScore", JSON.stringify(highScoreArray));
-  }
-
-  //Store object in Local Storage
+  localStorage.setItem("highScore", JSON.stringify(highScore));
 };
 
 const renderScoreContainer = function () {
@@ -163,10 +174,10 @@ const renderScoreContainer = function () {
   submitInput.textContent = "Submit";
 
   //Add event listener click on the submit button to prevent default
-  submitInput.addEventListener("click", scorePreventDefault);
+  //submitInput.addEventListener("click", scorePreventDefault);
 
   //Add event listener click on the submit button to store on Local Storage
-  submitInput.addEventListener("click", onClick);
+  submitInput.addEventListener("click", addToHighScore);
 
   //append to form
   scoreForm.append(initialsLabel, textInput, submitInput);
