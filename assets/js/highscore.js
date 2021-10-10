@@ -5,7 +5,6 @@ const clearLocalStorageBtn = document.querySelector("#clear-btn");
 const clearLocalStorage = function () {
   //Clear the local Storage
   localStorage.clear();
-  console.log(localStorage);
 
   //Remove de highScoreContainer
   highScoreContainer.innerHTML = "";

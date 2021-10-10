@@ -201,7 +201,6 @@ const startAgain = function () {
 const renderGameOverContainer = function () {
   //Remove questionContainerDiv
   questionContainerDiv.remove();
-  console.log(questionContainerDiv);
 
   //render the Game over div
   const gameOverDiv = document.createElement("div");
