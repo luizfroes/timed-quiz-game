@@ -16,7 +16,7 @@ clearLocalStorageBtn.addEventListener("click", clearLocalStorage);
 
 //Go back to main page
 const goBack = function () {
-  location.assign("/index.html");
+  location.assign("./index.html");
 };
 //Add event listener goBack
 goBackBtn.addEventListener("click", goBack);
