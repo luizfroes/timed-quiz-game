@@ -186,7 +186,7 @@ const renderScoreContainer = function () {
 
 const startAgain = function () {
   //Go back to main page
-  location.assign("./highscore.html");
+  location.assign("./index.html");
 
   //Set the timer
   timeRemaining = 91;
@@ -196,9 +196,6 @@ const startAgain = function () {
 
   //Set the question Index to 0
   currentQuestionIndex = 0;
-
-  //Render QuestionsContainer
-  renderQuestionContainer();
 };
 
 const renderGameOverContainer = function () {
@@ -209,6 +206,7 @@ const renderGameOverContainer = function () {
   //render the Game over div
   const gameOverDiv = document.createElement("div");
   gameOverDiv.setAttribute("class", "game-over-container");
+  gameOverDiv.setAttribute("id", "game-over-container");
 
   //render the h1
   const gameOverText = document.createElement("h1");
