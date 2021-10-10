@@ -169,9 +169,6 @@ const renderScoreContainer = function () {
   submitInput.setAttribute("class", "submit-btn");
   submitInput.textContent = "Submit";
 
-  //Add event listener click on the submit button to prevent default
-  //submitInput.addEventListener("click", scorePreventDefault);
-
   //Add event listener click on the submit button to store on Local Storage
   submitInput.addEventListener("click", addToHighScore);
 
@@ -188,8 +185,8 @@ const renderScoreContainer = function () {
 };
 
 const startAgain = function () {
-  //Remove the gameOverDiv
-  mainContainer.innerHTML = "";
+  //Go back to main page
+  location.assign("/index.html");
 
   //Set the timer
   timeRemaining = 91;
