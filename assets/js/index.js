@@ -161,9 +161,13 @@ const startAgain = function () {
   mainContainer.innerHTML = "";
 
   //Set the timer
-  timeRemaining === timeRemaining + 91;
+  timeRemaining = 91;
+
   //Start the timer
   startTimer();
+
+  //Set the question Index to 0
+  currentQuestionIndex = 0;
 
   //Render QuestionsContainer
   renderQuestionContainer();
