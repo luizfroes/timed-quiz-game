@@ -87,16 +87,33 @@ let timeRemaining = 91;
 
 let currentQuestionIndex = 0;
 
-const registerScore = function (event) {
+const scorePreventDefault = function (event) {
   event.preventDefault();
+};
+
+const onClick = function () {
   //Get value from textInput
   const initialsInput = document.getElementById("text-input").value;
 
-  //Construct an object {initials:"", score:0}
-  const scoreObject = { initials: initialsInput, score: timeRemaining };
+  //get from local storage
+  const dataFromLocalS = localStorage.getItem("highScore");
+
+  if (!dataFromLocalS) {
+    //Construct an object {initials:"", score:0}
+    const scoreObject = { initials: initialsInput, score: timeRemaining };
+    const scoreArray = [scoreObject.initials, scoreObject.score];
+
+    //Set in Local Storage
+    localStorage.setItem("highScore", JSON.stringify(scoreArray));
+  } else {
+    //const highScoreArray = JSON.parse(dataFromLocalS);
+    console.log(scoreObject.initials, scoreObject.score);
+    //highScoreArray.push(scoreObject);
+
+    //localStorage.setItem("highScore", JSON.stringify(highScoreObject));
+  }
 
   //Store object in Local Storage
-  return console.log("clicked", scoreObject);
 };
 
 const renderScoreContainer = function () {
@@ -144,8 +161,11 @@ const renderScoreContainer = function () {
   submitInput.setAttribute("class", "submit-btn");
   submitInput.textContent = "Submit";
 
-  //Add event listener click on the submit button
-  submitInput.addEventListener("click", registerScore);
+  //Add event listener click on the submit button to prevent default
+  submitInput.addEventListener("click", scorePreventDefault);
+
+  //Add event listener click on the submit button to store on Local Storage
+  submitInput.addEventListener("click", onClick);
 
   //append to form
   scoreForm.append(initialsLabel, textInput, submitInput);
