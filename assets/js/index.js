@@ -74,7 +74,7 @@ const questionsArray = [
     correctAnswer: "Nirvana",
   },
 ];
-
+const highScoreBtn = document.querySelector("#highscore-link");
 const startBtn = document.querySelector("#start-btn");
 const startContainer = document.querySelector("#start-container");
 const mainContainer = document.querySelector("#main");
@@ -86,10 +86,6 @@ let timer = null;
 let timeRemaining = 91;
 
 let currentQuestionIndex = 0;
-
-//const scorePreventDefault = function (event) {
-//event.preventDefault();
-//};
 
 const initializeLocalStorage = function (key, defaultValue) {
   //initialize LS
@@ -352,3 +348,9 @@ const startGame = function () {
 };
 
 startBtn.addEventListener("click", startGame);
+
+const goToHighScore = function () {
+  location.assign("/highscore.html");
+};
+
+highScoreBtn.addEventListener("click", goToHighScore);
