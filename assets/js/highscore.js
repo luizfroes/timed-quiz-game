@@ -23,20 +23,20 @@ const constructPlayerHighScore = function (highScore) {
   const constructPlayerScore = function (item) {
     //construct the div
     const playerHighScoreDiv = document.createElement("div");
-    playerHighScore.setAttribute("class", "high-score-div");
-    playerHighScore.setAttribute("id", "high-score-div");
+    playerHighScoreDiv.setAttribute("class", "high-score-div");
+    playerHighScoreDiv.setAttribute("id", "high-score-div");
 
     //construct the span
     const spanPosition = document.createElement("span");
-    spanPosition.setAttribute("class", "text-span");
+    spanPosition.setAttribute("class", "span-position");
     spanPosition.textContent = highScore.indexOf(item) + 1;
 
     const spanInitials = document.createElement("span");
-    spanInitials.setAttribute("class", "text-span");
+    spanInitials.setAttribute("class", "span-initials");
     spanInitials.textContent = item.initials;
 
     const spanScore = document.createElement("span");
-    spanScore.setAttribute("class", "text-span");
+    spanScore.setAttribute("class", "span-score");
     spanScore.textContent = item.score;
 
     //append to div
@@ -45,7 +45,9 @@ const constructPlayerHighScore = function (highScore) {
     return playerHighScoreDiv;
   };
 
-  return console.log(playerHighScoreDiv);
+  return highScore.map(function (item) {
+    return constructPlayerScore(item);
+  });
   //append to div
   //playerHighScoreDiv.append(spanPosition, spanInitials, spanScore);
 
@@ -58,6 +60,13 @@ const constructPlayerHighScore = function (highScore) {
 const renderHighScore = function (highScore) {
   //construct each player highScore
   const playerHighScore = constructPlayerHighScore(highScore);
+  console.log(playerHighScore);
+
+  //loop over the playerHighScore
+  playerHighScore.forEach((element) => {
+    highScoreContainer.appendChild(element);
+  });
+  console.log(highScoreContainer);
 };
 
 document.addEventListener("DOMContentLoaded", function (event) {

@@ -10,7 +10,7 @@
 * {
   border: 0px;
   margin: 0px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   margin-block-start: 0px;
   margin-block-end: 0px;
 }
@@ -205,10 +205,29 @@ p {
 
 .high-score-container {
   margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0px 4px;
 }
 
-.span-text {
+.high-score-div {
+  border: solid 0.5rem white;
+  margin: 1rem 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.span-initials,
+.span-position,
+.span-score {
   padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.span-score {
+  color: #ffbc42ff;
 }
 
 /* tablet properties */
