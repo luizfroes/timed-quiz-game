@@ -41,14 +41,19 @@ const constructPlayerHighScore = function (highScore) {
     //append to div
     playerHighScore.append(spanPosition, spanInitials, spanScore);
 
-    //Map over highScore
-    highScore.map(constructPlayerScore).join("");
     return playerHighScore;
   };
+
+  let myHTML = highScore.map(function (item) {
+    //Map over highScore
+    return constructPlayerScore(item);
+  });
 };
 
+//console.log(playerHighScore);
+
 const renderHighScore = function (highScore) {
-  console.log(highScore);
+  //console.log(highScore);
 
   //construct each player highScore
   const playerHighScore = constructPlayerHighScore(highScore);
