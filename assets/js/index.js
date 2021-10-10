@@ -186,7 +186,7 @@ const renderScoreContainer = function () {
 
 const startAgain = function () {
   //Go back to main page
-  location.assign("/index.html");
+  //location.assign("/index.html");
 
   //Set the timer
   timeRemaining = 91;
@@ -216,6 +216,7 @@ const renderGameOverContainer = function () {
   //render the Try again button
   const tryAgainBtn = document.createElement("button");
   tryAgainBtn.setAttribute("class", "try-again-btn");
+  tryAgainBtn.setAttribute("href", "./index.html");
   tryAgainBtn.textContent = "Try again";
 
   tryAgainBtn.addEventListener("click", startAgain);
