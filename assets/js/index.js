@@ -204,6 +204,7 @@ const startAgain = function () {
 const renderGameOverContainer = function () {
   //Remove questionContainerDiv
   questionContainerDiv.remove();
+  console.log(questionContainerDiv);
 
   //render the Game over div
   const gameOverDiv = document.createElement("div");
@@ -216,7 +217,6 @@ const renderGameOverContainer = function () {
   //render the Try again button
   const tryAgainBtn = document.createElement("button");
   tryAgainBtn.setAttribute("class", "try-again-btn");
-  tryAgainBtn.setAttribute("href", "./index.html");
   tryAgainBtn.textContent = "Try again";
 
   tryAgainBtn.addEventListener("click", startAgain);
@@ -347,8 +347,8 @@ const startGame = function () {
 
 startBtn.addEventListener("click", startGame);
 
-//const goToHighScore = function () {
-//location.assign("/highscore.html");
-//};
+const goToHighScore = function () {
+  location.assign("/highscore.html");
+};
 
-//highScoreBtn.addEventListener("click", goToHighScore);
+highScoreBtn.addEventListener("click", goToHighScore);
