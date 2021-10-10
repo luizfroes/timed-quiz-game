@@ -1,6 +1,6 @@
 const clearBtn = document.querySelector("#clear-btn");
 const goBackBtn = document.querySelector("#go-back-btn");
-
+const highScoreContainer = document.querySelector("#high-score-container");
 const goBack = function () {
   location.assign("/index.html");
 };
@@ -19,9 +19,10 @@ const getFromLocalStorage = function (key, defaultValue) {
 
 const constructPlayerHighScore = function (highScore) {
   //construct the score for each player
+
   const constructPlayerScore = function (item) {
     //construct the div
-    const playerHighScore = document.createElement("div");
+    const playerHighScoreDiv = document.createElement("div");
     playerHighScore.setAttribute("class", "high-score-div");
     playerHighScore.setAttribute("id", "high-score-div");
 
@@ -39,25 +40,24 @@ const constructPlayerHighScore = function (highScore) {
     spanScore.textContent = item.score;
 
     //append to div
-    playerHighScore.append(spanPosition, spanInitials, spanScore);
+    playerHighScoreDiv.append(spanPosition, spanInitials, spanScore);
 
-    return playerHighScore;
+    return playerHighScoreDiv;
   };
 
-  let myHTML = highScore.map(function (item) {
-    //Map over highScore
-    return constructPlayerScore(item);
-  });
+  return console.log(playerHighScoreDiv);
+  //append to div
+  //playerHighScoreDiv.append(spanPosition, spanInitials, spanScore);
+
+  //return console.log(playerHighScore);
+
+  //Map over highScore
+  //return highScore.map(constructPlayerScore(item).join(" "));
 };
 
-//console.log(playerHighScore);
-
 const renderHighScore = function (highScore) {
-  //console.log(highScore);
-
   //construct each player highScore
   const playerHighScore = constructPlayerHighScore(highScore);
-  console.log(playerHighScore);
 };
 
 document.addEventListener("DOMContentLoaded", function (event) {
