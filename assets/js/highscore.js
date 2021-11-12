@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const orderedHighScore = highScore.sort(function (item1, item2) {
     return item2.score - item1.score;
   });
-  console.log(orderedHighScore);
+
   //render div with initial score
   renderHighScore(orderedHighScore);
 });
