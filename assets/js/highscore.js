@@ -31,9 +31,8 @@ const getFromLocalStorage = (key, defaultValue) => {
   }
 };
 
-const constructPlayerHighScore = (highScore) => {
+const constructPlayerHighScore = (orderedHighScore) => {
   //construct the score for each player
-
   const constructPlayerScore = (item) => {
     //construct the div
     const playerHighScoreDiv = document.createElement("div");
@@ -43,7 +42,7 @@ const constructPlayerHighScore = (highScore) => {
     //construct the span
     const spanPosition = document.createElement("span");
     spanPosition.setAttribute("class", "span-position");
-    spanPosition.textContent = highScore.indexOf(item) + 1;
+    spanPosition.textContent = orderedHighScore.indexOf(item) + 1;
 
     const spanInitials = document.createElement("span");
     spanInitials.setAttribute("class", "span-initials");
@@ -59,14 +58,14 @@ const constructPlayerHighScore = (highScore) => {
     return playerHighScoreDiv;
   };
 
-  return highScore.map(function (item) {
+  return orderedHighScore.map(function (item) {
     return constructPlayerScore(item);
   });
 };
 
-const renderHighScore = (highScore) => {
+const renderHighScore = (orderedHighScore) => {
   //construct each player highScore
-  const playerHighScore = constructPlayerHighScore(highScore);
+  const playerHighScore = constructPlayerHighScore(orderedHighScore);
 
   //loop over the playerHighScore
   playerHighScore.forEach((element) => {
@@ -78,6 +77,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
   //get from LS
   const highScore = getFromLocalStorage("highScore", []);
 
+  // Put the elements in crescent order
+  const orderedHighScore = highScore.sort(function (item1, item2) {
+    return item2.score - item1.score;
+  });
+  console.log(orderedHighScore);
   //render div with initial score
-  renderHighScore(highScore);
+  renderHighScore(orderedHighScore);
 });
