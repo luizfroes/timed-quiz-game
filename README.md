@@ -1,8 +1,6 @@
-# timed-quiz-game
+# The Rock n' Roll Quiz
 
 A clean, polished, and responsive timed coding quiz with multiple-choice questions that runs in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code.
-
-# The Rock n' Roll Quiz
 
 ## Description
 
