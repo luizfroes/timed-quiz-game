@@ -2,7 +2,7 @@ const goBackBtn = document.querySelector("#go-back-btn");
 const highScoreContainer = document.querySelector("#high-score-container");
 const clearLocalStorageBtn = document.querySelector("#clear-btn");
 
-const clearLocalStorage = function () {
+const clearLocalStorage = () => {
   //Clear the local Storage
   localStorage.clear();
 
@@ -14,13 +14,13 @@ const clearLocalStorage = function () {
 clearLocalStorageBtn.addEventListener("click", clearLocalStorage);
 
 //Go back to main page
-const goBack = function () {
+const goBack = () => {
   location.assign("./index.html");
 };
 //Add event listener goBack
 goBackBtn.addEventListener("click", goBack);
 
-const getFromLocalStorage = function (key, defaultValue) {
+const getFromLocalStorage = (key, defaultValue) => {
   //Get data from local storage
   const localStorageData = JSON.parse(localStorage.getItem(key));
 
@@ -31,10 +31,10 @@ const getFromLocalStorage = function (key, defaultValue) {
   }
 };
 
-const constructPlayerHighScore = function (highScore) {
+const constructPlayerHighScore = (highScore) => {
   //construct the score for each player
 
-  const constructPlayerScore = function (item) {
+  const constructPlayerScore = (item) => {
     //construct the div
     const playerHighScoreDiv = document.createElement("div");
     playerHighScoreDiv.setAttribute("class", "high-score-div");
@@ -64,7 +64,7 @@ const constructPlayerHighScore = function (highScore) {
   });
 };
 
-const renderHighScore = function (highScore) {
+const renderHighScore = (highScore) => {
   //construct each player highScore
   const playerHighScore = constructPlayerHighScore(highScore);
 

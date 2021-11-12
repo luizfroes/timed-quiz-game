@@ -87,7 +87,7 @@ let timeRemaining = 91;
 
 let currentQuestionIndex = 0;
 
-const initializeLocalStorage = function (key, defaultValue) {
+const initializeLocalStorage = (key, defaultValue) => {
   //initialize LS
   const highScore = JSON.stringify(localStorage.getItem(key));
 
@@ -96,7 +96,7 @@ const initializeLocalStorage = function (key, defaultValue) {
   }
 };
 
-const getFromLocalStorage = function (key, defaultValue) {
+const getFromLocalStorage = (key, defaultValue) => {
   const localStorageData = JSON.parse(localStorage.getItem(key));
 
   if (!localStorageData) {
@@ -106,25 +106,36 @@ const getFromLocalStorage = function (key, defaultValue) {
   }
 };
 
-const addToHighScore = function () {
+const addToHighScore = () => {
   //Initialize LS
   initializeLocalStorage("highScore", []);
 
   //Get value from textInput
-  const initialsInput = document.getElementById("text-input").value;
+  let initialsInput = document.getElementById("text-input").value;
 
-  //Construct an object {initials:"", score:0}
-  const scoreObject = { initials: initialsInput, score: timeRemaining };
+  if (initialsInput == "") {
+  } else {
+    //Construct an object {initials:"", score:0}
+    const scoreObject = { initials: initialsInput, score: timeRemaining };
 
-  //add to LS
-  const highScore = getFromLocalStorage("highScore", []);
+    //add to LS
+    const highScore = getFromLocalStorage("highScore", []);
 
-  highScore.push(scoreObject);
+    highScore.push(scoreObject);
 
-  localStorage.setItem("highScore", JSON.stringify(highScore));
+    localStorage.setItem("highScore", JSON.stringify(highScore));
+  }
 };
 
-const renderScoreContainer = function () {
+const validateForm = () => {
+  let input = document.getElementById("text-input").value;
+  if (input == "") {
+    alert("Initials must be filled out");
+    return false;
+  }
+};
+
+const renderScoreContainer = () => {
   //Remove questionContainerDiv
   questionContainerDiv.remove();
 
@@ -151,6 +162,8 @@ const renderScoreContainer = function () {
   //create the form
   const scoreForm = document.createElement("form");
   scoreForm.setAttribute("class", "score-form");
+  scoreForm.setAttribute("name", "score-form");
+  scoreForm.setAttribute("onsubmit", "return validateForm()");
 
   //create the label
   const initialsLabel = document.createElement("label");
@@ -184,7 +197,7 @@ const renderScoreContainer = function () {
   return scoreContainerDiv;
 };
 
-const startAgain = function () {
+const startAgain = () => {
   //Go back to main page
   location.assign("./index.html");
 
@@ -198,7 +211,7 @@ const startAgain = function () {
   currentQuestionIndex = 0;
 };
 
-const renderGameOverContainer = function () {
+const renderGameOverContainer = () => {
   //Remove questionContainerDiv
   questionContainerDiv.remove();
 
@@ -227,7 +240,7 @@ const renderGameOverContainer = function () {
   return gameOverDiv;
 };
 
-const verifyAnswer = function (correctOption, answer) {
+const verifyAnswer = (correctOption, answer) => {
   if (correctOption !== answer) {
     //Deduct timer value in 10
     timeRemaining = timeRemaining - 10;
@@ -250,7 +263,7 @@ const verifyAnswer = function (correctOption, answer) {
     }
   }
 };
-const getAnswer = function (event) {
+const getAnswer = (event) => {
   const currentTarget = event.currentTarget;
   const target = event.target;
 
@@ -264,7 +277,7 @@ const getAnswer = function (event) {
   }
 };
 
-const renderQuestionContainer = function () {
+const renderQuestionContainer = () => {
   const correctOption = questionsArray[currentQuestionIndex].correctAnswer;
 
   //create the questionContainerDiv
@@ -307,7 +320,7 @@ const renderQuestionContainer = function () {
   return questionContainerDiv;
 };
 
-const startTimer = function () {
+const startTimer = () => {
   const timerElement = document.querySelector("#timer");
 
   //declare the tick function
@@ -331,7 +344,7 @@ const startTimer = function () {
   timer = setInterval(timerTick, 1000);
 };
 
-const startGame = function () {
+const startGame = () => {
   //Remove start container
   startContainer.remove();
 
@@ -344,7 +357,7 @@ const startGame = function () {
 
 startBtn.addEventListener("click", startGame);
 
-const goToHighScore = function () {
+const goToHighScore = () => {
   location.assign("./highscore.html");
 };
 
