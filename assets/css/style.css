@@ -1,0 +1,251 @@
+:root {
+  /* CSS HEX */
+  --sapphire-blue: #006ba6ff;
+  --dodger-blue: #0496ffff;
+  --maximum-yellow-red: #ffbc42ff;
+  --ruby: #e71d3f;
+  --quinacridone-magenta: #8f2d56ff;
+}
+
+* {
+  border: 0px;
+  margin: 0px;
+  box-sizing: content-box;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+body {
+  background-image: url("../images/images/Rock-n-roll.png");
+  background-size: cover;
+  color: #ffffff;
+  font-family: "RocknRoll One", sans-serif;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.header a,
+.header div {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--dodger-blue);
+}
+
+.header a {
+  cursor: pointer;
+}
+
+/* Pseudo class hover applied on the nav-link class */
+.header a:hover {
+  color: var(--sapphire-blue);
+}
+
+.timer {
+  color: var(--maximum-yellow-red);
+}
+
+.main {
+  margin-top: 5rem;
+}
+
+.start-container,
+.score-container,
+.game-over-container,
+.high-score-title,
+.high-score-container,
+h2 {
+  text-align: center;
+}
+/* Group selector for start-container, question-container, score-container and game-over-container */
+.start-container,
+.question-container,
+.score-container,
+.game-over-container {
+  margin: 0rem 16rem;
+  padding: 1rem;
+}
+
+.answer,
+p {
+  margin: 2rem 0rem;
+}
+
+/* Start, Try again, Go back and Clear buttons */
+.start-btn,
+.try-again-btn,
+.go-back-btn,
+.clear-btn {
+  margin-top: 1.5rem;
+  box-shadow: 3px 4px 0px 0px #1564ad;
+  background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+  background-color: #79bbff;
+  border-radius: 5px;
+  border: 1px solid #337bc4;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 12px 44px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #528ecc;
+}
+
+.start-btn:hover {
+  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color: #378de5;
+}
+.start-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.try-again-btn:hover {
+  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color: #378de5;
+}
+
+.try-again-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.go-back-btn:hover {
+  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color: #378de5;
+}
+.go-back-btn:active {
+  position: relative;
+  top: 1px;
+}
+.clear-btn:hover {
+  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color: #378de5;
+}
+.clear-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+/* Questions selectors */
+.answer {
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+  background-color: #007dc1;
+  border-radius: 3px;
+  border: 1px solid #124d77;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 13px;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
+}
+
+.answer:hover {
+  background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+  background-color: #0061a7;
+}
+
+.answer:active {
+  position: relative;
+  top: 1px;
+}
+
+/* Submit button */
+.submit-btn {
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+  background-color: #ededed;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: var(--sapphire-blue);
+  font-family: Impact;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 20px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+.submit-btn:hover {
+  background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+  background-color: #dfdfdf;
+}
+
+.submit-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.initials,
+.text-input {
+  margin-right: 0.5rem;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3rem;
+}
+
+.go-back-btn,
+.clear-btn {
+  margin: 2rem;
+}
+
+.high-score-container {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0px 4px;
+}
+
+.high-score-div {
+  border: solid 0.5rem white;
+  margin: 1rem 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.span-initials,
+.span-position,
+.span-score {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.span-score {
+  color: #ffbc42ff;
+}
+
+/* tablet properties */
+@media screen and (max-width: 850px) and (min-width: 577px) {
+  .start-container,
+  .question-container,
+  .score-container,
+  .game-over-container {
+    margin: 0rem 6rem;
+  }
+}
+
+/* mobile properties */
+@media screen and (max-width: 576px) {
+  .start-container,
+  .question-container,
+  .score-container,
+  .game-over-container {
+    margin: 0rem 2rem;
+  }
+}
